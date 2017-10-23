@@ -3,11 +3,15 @@ package za.ac.cput.accommodationapp.restapi.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.internal.http.HttpMethod;
+import za.ac.cput.accommodationapp.domain.Contacts;
+import za.ac.cput.accommodationapp.restapi.RestAPI;
+
 /**
  * Created by Katlego on 2017/10/16.
  */
 
-public class RestContactsApi
+public class RestContactsApi implements RestAPI
 {
     final String BASE_URL="http//localhost:8080/api/";
 
@@ -15,51 +19,51 @@ public class RestContactsApi
     final RestTemplate restTemplate = RestMethods.getRestTemplate();
 
     @Override
-    public Administrator get(Long id) {
-        final String url = BASE_URL+"about/"+id.toString();
-        HttpEntity<Administrator> requestEntity = new HttpEntity<Administrator>(requestHeaders);
+    public Contacts get(Long id) {
+        final String url = BASE_URL+"contacts/"+id.toString();
+        HttpEntity<Contacts> requestEntity = new HttpEntity<Contacts>(requestHeaders);
         ResponseEntity<Administrator> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, Administrator.class);
-        Administrator administrator = responseEntity.getBody();
-        return about;
+        Contacts contact = responseEntity.getBody();
+        return contact;
     }
 
     @Override
     public String post(Administrator entity) {
-        final String url = BASE_URL+"about/create";
-        HttpEntity<Administrator> requestEntity = new HttpEntity<Administrator>(entity, requestHeaders);
+        final String url = BASE_URL+"contacts/create";
+        HttpEntity<Contacts> requestEntity = new HttpEntity<Contacts>(entity, requestHeaders);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
         String result = responseEntity.getBody();
         return result;
     }
 
     @Override
-    public String put(Administrator entity) {
-        final String url = BASE_URL+"about/update/"+entity.getId().toString();
-        HttpEntity<Administrator> requestEntity = new HttpEntity<Administrator>(entity, requestHeaders);
+    public String put(Contacts entity) {
+        final String url = BASE_URL+"contacts/update/"+entity.getId().toString();
+        HttpEntity<Contacts> requestEntity = new HttpEntity<Contacts>(entity, requestHeaders);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class);
         String result = responseEntity.getBody();
         return result;
     }
 
     @Override
-    public String delete(Administrator entity) {
+    public String delete(Contacts entity) {
         final String url = BASE_URL+"login/delete/"+entity.getId().toString();
-        HttpEntity<Administrator> requestEntity = new HttpEntity<Administrator>(entity, requestHeaders);
+        HttpEntity<Contacts> requestEntity = new HttpEntity<Contacts>(entity, requestHeaders);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class);
         return responseEntity.getBody();
     }
 
     @Override
-    public List<Administrator> getAll() {
-        List<Administrator> aboutList = new ArrayList<>();
-        final String url = BASE_URL+"about/";
+    public List<Contacts> getAll() {
+        List<Contacts> contactList = new ArrayList<>();
+        final String url = BASE_URL+"contacts/";
         HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
-        ResponseEntity<Administrator[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, Administrator[].class);
-        Administrator[] results = responseEntity.getBody();
+        ResponseEntity<Contacts[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, Contacts[].class);
+        Contacts[] results = responseEntity.getBody();
 
-        for (Administrator administrator : results) {
-            aboutList.add(administrator);
+        for (Contacts contacts : results) {
+            contactList.add(contacts);
         }
-        return aboutList;
+        return contactList;
     }
 }

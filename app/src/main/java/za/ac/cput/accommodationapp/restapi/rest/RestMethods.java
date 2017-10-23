@@ -8,7 +8,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-public class RestMethods
+import za.ac.cput.accommodationapp.restapi.RestAPI;
+
+public class RestMethods implements RestAPI
 {
     public static RestTemplate getRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();

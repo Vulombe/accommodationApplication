@@ -21,7 +21,7 @@ import okhttp3.Response;
  * Created by hashcode on 2016/04/17.
  */
 public class AppUtil {
-    /*public static String getStringLocation(Map<String, String> location) {
+    public static String getStringLocation(Map<String, String> location) {
         Gson gson = new Gson();
         return gson.toJson(location);
     }
@@ -57,7 +57,7 @@ public class AppUtil {
 
     public static String getBaserURI(){
         return "localhost";
-    }*/
+    }
     public static String getStringLocation(Map<String, String> location) {
         Gson gson = new Gson();
         return gson.toJson(location);
